@@ -2075,7 +2075,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     child: ClipRRect(
       borderRadius: BorderRadius.circular(9),
       child: Image.network(url, fit: BoxFit.contain,
-          errorBuilder: (_, __, ___) => const Icon(Icons.medical_services_outlined, color: kBlue, size: 18)),
+          errorBuilder: (_, _, _) => const Icon(Icons.medical_services_outlined, color: kBlue, size: 18)),
     ),
   );
 
@@ -2117,7 +2117,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 16),
       itemCount: _chips.length,
-      separatorBuilder: (_, __) => const SizedBox(width: 8),
+      separatorBuilder: (_, _) => const SizedBox(width: 8),
       itemBuilder: (_, i) {
         final sel = i == _selectedChip;
         return GestureDetector(
@@ -2212,7 +2212,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                     ? child
                                     : Center(child: SizedBox(width: 16, height: 16,
                                         child: CircularProgressIndicator(strokeWidth: 2, color: p.imageIconColor))),
-                                errorBuilder: (_, __, ___) =>
+                                errorBuilder: (_, _, _) =>
                                     Center(child: Icon(p.imageIcon, color: p.imageIconColor, size: 32)),
                               )
                             : Center(child: Icon(p.imageIcon, color: p.imageIconColor, size: 32)),
@@ -2396,7 +2396,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                             child: const Center(child: SizedBox(width: 14, height: 14,
                                 child: CircularProgressIndicator(strokeWidth: 2, color: kBlue))));
                       },
-                      errorBuilder: (_, __, ___) => Container(color: c['bg'] as Color,
+                      errorBuilder: (_, _, _) => Container(color: c['bg'] as Color,
                           child: const Icon(Icons.category_rounded, color: kBlue, size: 26)),
                     ),
                   ),

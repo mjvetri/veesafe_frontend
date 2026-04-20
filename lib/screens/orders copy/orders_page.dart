@@ -14,16 +14,27 @@ class OrdersPage extends StatefulWidget {
 
 class _OrdersPageState extends State<OrdersPage> {
   int _selectedFilter = 0;
-  final List<String> _filters = ['All (17)', 'Pending', 'Delivered', 'Returning'];
+  final List<String> _filters = [
+    'All (17)',
+    'Pending',
+    'Delivered',
+    'Returning',
+  ];
 
   List<OrderModel> get _filteredOrders {
     switch (_selectedFilter) {
       case 1:
-        return sampleOrders.where((o) => o.statusType == OrderStatus.pending).toList();
+        return sampleOrders
+            .where((o) => o.statusType == OrderStatus.pending)
+            .toList();
       case 2:
-        return sampleOrders.where((o) => o.statusType == OrderStatus.delivered).toList();
+        return sampleOrders
+            .where((o) => o.statusType == OrderStatus.delivered)
+            .toList();
       case 3:
-        return sampleOrders.where((o) => o.statusType == OrderStatus.returning).toList();
+        return sampleOrders
+            .where((o) => o.statusType == OrderStatus.returning)
+            .toList();
       default:
         return sampleOrders;
     }
@@ -80,10 +91,11 @@ class _EmptyOrders extends StatelessWidget {
             'No orders found\nfor this filter.',
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: 13,
-                color: AppColors.muted,
-                fontWeight: FontWeight.w600,
-                height: 1.5),
+              fontSize: 13,
+              color: AppColors.muted,
+              fontWeight: FontWeight.w600,
+              height: 1.5,
+            ),
           ),
         ],
       ),

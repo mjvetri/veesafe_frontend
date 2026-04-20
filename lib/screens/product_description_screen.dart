@@ -1961,7 +1961,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen>
                       alignment: Alignment.center,
                       transform: flipX ? (Matrix4.identity()..scale(-1.0, 1.0, 1.0)) : Matrix4.identity(),
                       child: Image.asset(currentView['image'] as String, fit: BoxFit.contain, alignment: alignment,
-                          errorBuilder: (_, __, ___) => Center(child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          errorBuilder: (_, _, _) => Center(child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                             Icon(Icons.image_outlined, color: kNavy.withOpacity(0.4), size: sw * 0.2),
                             SizedBox(height: sw * 0.02),
                             Text(currentView['label'] as String,
@@ -2014,7 +2014,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen>
                                 alignment: Alignment.center,
                                 transform: tFlip ? (Matrix4.identity()..scale(-1.0, 1.0, 1.0)) : Matrix4.identity(),
                                 child: Image.asset(view['image'] as String, fit: BoxFit.cover, alignment: tAlign,
-                                    errorBuilder: (_, __, ___) => Container(
+                                    errorBuilder: (_, _, _) => Container(
                                       color: sel ? kNavy.withOpacity(0.08) : Colors.grey.withOpacity(0.08),
                                       child: Center(child: Icon(view['icon'] as IconData, color: sel ? kNavy : kTextGrey, size: sw * 0.05)),
                                     )),
@@ -2490,7 +2490,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen>
               decoration: const BoxDecoration(gradient: LinearGradient(colors: [Color(0xFFEBEFF8), Color(0xFFD4E4F7)])),
               child: Stack(children: [
                 Positioned.fill(child: Image.asset(product['image'] as String, fit: BoxFit.contain,
-                    errorBuilder: (_, __, ___) => Center(child: Icon(product['icon'] as IconData, color: kNavy.withValues(alpha: 0.3), size: sw * 0.1)))),
+                    errorBuilder: (_, _, _) => Center(child: Icon(product['icon'] as IconData, color: kNavy.withValues(alpha: 0.3), size: sw * 0.1)))),
                 Positioned(top: sw * 0.018, left: sw * 0.018, child: _chip(product['tag'] as String,
                     product['tag'] == 'HOT' ? kRed : product['tag'] == 'TOP' ? kOrange : kNavy)),
               ]),
@@ -2548,7 +2548,7 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen>
               decoration: const BoxDecoration(gradient: LinearGradient(colors: [Color(0xFFEBEFF8), Color(0xFFD4E4F7)])),
               child: Stack(children: [
                 Positioned.fill(child: Image.asset(product['image'] as String, fit: BoxFit.contain,
-                    errorBuilder: (_, __, ___) => Center(child: Icon(product['icon'] as IconData, color: kNavy.withValues(alpha: 0.3), size: sw * 0.1)))),
+                    errorBuilder: (_, _, _) => Center(child: Icon(product['icon'] as IconData, color: kNavy.withValues(alpha: 0.3), size: sw * 0.1)))),
                 Positioned(top: sw * 0.012, left: sw * 0.012, child: _chip(product['tag'] as String,
                     product['tag'] == 'HOT' ? kRed : product['tag'] == 'TOP' ? kOrange : kNavy)),
               ]),

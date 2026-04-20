@@ -1348,7 +1348,7 @@ class _NotificationScreenState extends State<NotificationScreen>
   Widget build(BuildContext context) {
     return ValueListenableBuilder<int>(
       valueListenable: notificationNotifier,
-      builder: (context, _, __) => Scaffold(
+      builder: (context, _, _) => Scaffold(
         backgroundColor: const Color(0xFFF5F7FA),
         body: SafeArea(
           child: Column(

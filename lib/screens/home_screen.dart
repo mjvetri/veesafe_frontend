@@ -11013,7 +11013,7 @@ void _showShortsUploadSheet() {
                                         ? Image.network(
                                             p.imageUrl,
                                             fit: BoxFit.cover,
-                                            errorBuilder: (_, __, ___) =>
+                                            errorBuilder: (_, _, _) =>
                                                 Container(
                                                   color: p.imageBg,
                                                   child: Icon(
@@ -11026,7 +11026,7 @@ void _showShortsUploadSheet() {
                                         : Image.asset(
                                             p.imageUrl,
                                             fit: BoxFit.cover,
-                                            errorBuilder: (_, __, ___) =>
+                                            errorBuilder: (_, _, _) =>
                                                 Container(
                                                   color: p.imageBg,
                                                   child: Icon(
@@ -11729,7 +11729,7 @@ Widget _searchBar() => Padding(
                               ),
                             );
                           },
-                          errorBuilder: (_, __, ___) => Container(
+                          errorBuilder: (_, _, _) => Container(
                             color: e['bg'] as Color,
                             child: const Icon(
                               Icons.image_outlined,
@@ -11822,7 +11822,7 @@ Widget _searchBar() => Padding(
                               ),
                             );
                           },
-                          errorBuilder: (_, __, ___) => Container(
+                          errorBuilder: (_, _, _) => Container(
                             color: const Color(0xFFF0F0F0),
                             child: const Icon(
                               Icons.monitor_heart,
@@ -12230,9 +12230,9 @@ Widget _searchBar() => Padding(
       PageRouteBuilder(
         opaque: false,
         barrierColor: Colors.black,
-        pageBuilder: (_, __, ___) => _FullStoryScreen(story: s),
+        pageBuilder: (_, _, _) => _FullStoryScreen(story: s),
         transitionDuration: const Duration(milliseconds: 300),
-        transitionsBuilder: (_, anim, __, child) =>
+        transitionsBuilder: (_, anim, _, child) =>
             FadeTransition(opacity: anim, child: child),
       ),
     );
@@ -12378,7 +12378,7 @@ class _FullStoryScreenState extends State<_FullStoryScreen>
                                   : i == _slide
                                   ? AnimatedBuilder(
                                       animation: _progressCtrl,
-                                      builder: (_, __) =>
+                                      builder: (_, _) =>
                                           LinearProgressIndicator(
                                             value: _progressCtrl.value,
                                             backgroundColor: Colors.white
@@ -12484,7 +12484,7 @@ class _FullStoryScreenState extends State<_FullStoryScreen>
                       tween: Tween(begin: 0.6, end: 1.0),
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.elasticOut,
-                      builder: (_, scale, __) => Transform.scale(
+                      builder: (_, scale, _) => Transform.scale(
                         scale: scale,
                         child: Stack(
                           alignment: Alignment.center,
@@ -12797,7 +12797,7 @@ class _LensResultScreenState extends State<_LensResultScreen> {
           Image.asset(
             widget.imagePath,
             fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) =>
+            errorBuilder: (_, _, _) =>
                 Image.file(dart_io.File(widget.imagePath), fit: BoxFit.cover),
           ),
 
@@ -12965,7 +12965,7 @@ class _LensResultScreenState extends State<_LensResultScreen> {
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 itemCount: 1,
-                itemBuilder: (_, __) => Container(
+                itemBuilder: (_, _) => Container(
                   width: 56,
                   height: 56,
                   margin: const EdgeInsets.only(right: 8),
@@ -13185,7 +13185,7 @@ class _RecentlyViewedScreen extends StatelessWidget {
                                   ? Image.network(
                                       p.imageUrl,
                                       fit: BoxFit.cover,
-                                      errorBuilder: (_, __, ___) => Container(
+                                      errorBuilder: (_, _, _) => Container(
                                         color: p.imageBg,
                                         child: Icon(
                                           p.imageIcon,
@@ -13197,7 +13197,7 @@ class _RecentlyViewedScreen extends StatelessWidget {
                                   : Image.asset(
                                       p.imageUrl,
                                       fit: BoxFit.cover,
-                                      errorBuilder: (_, __, ___) => Container(
+                                      errorBuilder: (_, _, _) => Container(
                                         color: p.imageBg,
                                         child: Icon(
                                           p.imageIcon,

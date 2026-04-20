@@ -9,9 +9,6 @@ import 'screens/auth/otp_verification_screen.dart';
 import 'screens/auth/forgot_password_screen.dart';
 import 'screens/auth/reset_password_screen.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'app/app.dart';
 
 
 // void main() => runApp(const VeeSafeApp());
