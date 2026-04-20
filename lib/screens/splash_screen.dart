@@ -325,7 +325,7 @@ class _SplashScreenState extends State<SplashScreen>
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // Medical Cross / Home Icon
-                    Container(
+                    SizedBox(
                       width: 36,
                       height: 36,
                       child: CustomPaint(

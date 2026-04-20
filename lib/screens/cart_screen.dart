@@ -211,7 +211,7 @@ class _CartScreenState extends State<CartScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: sw * 0.04),
                     child: Text(
-                      _itemRemoved ? '0 Items' : '${_qty} Item${_qty > 1 ? 's' : ''} added',
+                      _itemRemoved ? '0 Items' : '$_qty Item${_qty > 1 ? 's' : ''} added',
                       style: TextStyle(fontSize: sw * 0.038, fontWeight: FontWeight.w600, color: const Color(0xFF2D3748)),
                     ),
                   ),
@@ -330,7 +330,7 @@ class _CartScreenState extends State<CartScreen> {
                     borderRadius: BorderRadius.circular(12),
                     child: Image.asset(
                       item['image'] as String, fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Icon(Icons.monitor_heart_outlined,
+                      errorBuilder: (_, _, _) => Icon(Icons.monitor_heart_outlined,
                           color: const Color(0xFF1A2B5E), size: imageSize * 0.5),
                     ),
                   ),
@@ -500,7 +500,7 @@ class _CartScreenState extends State<CartScreen> {
                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(14), topRight: Radius.circular(14)),
                   child: Container(width: cardWidth, height: imageHeight, color: const Color(0xFFEBEFF8),
                     child: Image.asset(product['image'] as String, fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Center(child: Icon(Icons.monitor_heart_outlined,
+                      errorBuilder: (_, _, _) => Center(child: Icon(Icons.monitor_heart_outlined,
                           color: const Color(0xFF1A2B5E), size: sw * 0.1))),
                   ),
                 ),
@@ -570,7 +570,7 @@ class _CartScreenState extends State<CartScreen> {
               decoration: BoxDecoration(color: const Color(0xFFEBEFF8), borderRadius: BorderRadius.circular(10)),
               child: ClipRRect(borderRadius: BorderRadius.circular(10),
                 child: Image.asset(product['image'] as String, fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => Icon(Icons.monitor_heart_outlined,
+                  errorBuilder: (_, _, _) => Icon(Icons.monitor_heart_outlined,
                       color: const Color(0xFF1A2B5E), size: imageSize * 0.5))),
             ),
             SizedBox(width: sw * 0.02),
