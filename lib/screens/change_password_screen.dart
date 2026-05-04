@@ -37,7 +37,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [kBlue, Color(0xFF1A73E8)],
+                  colors: [AppColors.kBlue, Color(0xFF1A73E8)],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),
@@ -78,7 +78,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w900,
-                          color: kBlack),
+                          color: AppColors.kBlack),
                     ),
                     const SizedBox(height: 32),
 
@@ -108,7 +108,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       width: double.infinity,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: kBlue,
+                          backgroundColor: AppColors.kBlue,
                           padding:
                               const EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
@@ -169,16 +169,16 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       TextField(
         controller: controller,
         obscureText: !show,
-        style: const TextStyle(fontSize: 14, color: kBlack),
+        style: const TextStyle(fontSize: 14, color: AppColors.kBlack),
         decoration: InputDecoration(
           hintText: hint,
           hintStyle:
-              const TextStyle(fontSize: 13, color: kGrey),
+              const TextStyle(fontSize: 13, color: AppColors.kGrey),
           suffixIcon: IconButton(
             icon: Icon(
                 show ? Icons.visibility_off : Icons.visibility,
                 size: 20,
-                color: kGrey),
+                color: AppColors.kGrey),
             onPressed: onToggle,
           ),
           filled: true,
@@ -190,7 +190,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: kBlue, width: 1.8),
+            borderSide: const BorderSide(color: AppColors.kBlue, width: 1.8),
           ),
           contentPadding: const EdgeInsets.symmetric(
               horizontal: 16, vertical: 14),

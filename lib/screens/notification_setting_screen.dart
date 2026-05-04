@@ -1,320 +1,3 @@
-// // lib/screens/notification_setting_screen.dart
-
-// import 'package:flutter/material.dart';
-// import '../constants/app_colors.dart';
-
-// class NotificationSettingScreen extends StatefulWidget {
-//   const NotificationSettingScreen({super.key});
-
-//   @override
-//   State<NotificationSettingScreen> createState() =>
-//       _NotificationSettingScreenState();
-// }
-
-// class _NotificationSettingScreenState
-//     extends State<NotificationSettingScreen> {
-//   // Selected channels
-//   final Set<String> _selected = {'WhatsApp'};
-
-//   final List<Map<String, dynamic>> _channels = [
-//     {'name': 'WhatsApp', 'icon': Icons.chat_rounded,          'color': Color(0xFF25D366)},
-//     {'name': 'Email',    'icon': Icons.email_rounded,      'color': Color(0xFFEA4335)},
-//     {'name': 'SMS',      'icon': Icons.sms_rounded,        'color': Color(0xFF0A1F5C)},
-//     {'name': 'Instagram','icon': Icons.camera_alt_rounded, 'color': Color(0xFFE1306C)},
-//     {'name': 'Facebook', 'icon': Icons.thumb_up_rounded,   'color': Color(0xFF1877F2)},
-//     {'name': 'Telegram', 'icon': Icons.send_rounded,       'color': Color(0xFF0088CC)},
-//   ];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.white,
-//       body: SafeArea(
-//         child: Column(
-//           children: [
-//             _appBar(context),
-//             Expanded(
-//               child: SingleChildScrollView(
-//                 physics: const BouncingScrollPhysics(),
-//                 child: Column(
-//                   children: [
-//                     const SizedBox(height: 30),
-//                     _headerSection(),
-//                     const SizedBox(height: 28),
-//                     _channelGrid(),
-//                     const SizedBox(height: 32),
-//                     _continueButton(context),
-//                     const SizedBox(height: 14),
-//                     _cancelButton(context),
-//                     const SizedBox(height: 28),
-//                   ],
-//                 ),
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   // ════════════════════════════════════════
-//   //  APP BAR
-//   // ════════════════════════════════════════
-//   Widget _appBar(BuildContext context) => Container(
-//         color: kBlue,
-//         padding: const EdgeInsets.fromLTRB(4, 6, 14, 10),
-//         child: Row(
-//           children: [
-//             IconButton(
-//               icon: const Icon(Icons.arrow_back_ios,
-//                   size: 18, color: Colors.white),
-//               onPressed: () => Navigator.pop(context),
-//             ),
-//             const Expanded(
-//               child: Center(
-//                 child: Text(
-//                   'Notification Setting',
-//                   style: TextStyle(
-//                       fontSize: 17,
-//                       fontWeight: FontWeight.w800,
-//                       color: Colors.white),
-//                 ),
-//               ),
-//             ),
-//             const SizedBox(width: 48),
-//           ],
-//         ),
-//       );
-
-//   // ════════════════════════════════════════
-//   //  HEADER — icon + title + subtitle
-//   // ════════════════════════════════════════
-//   Widget _headerSection() => Padding(
-//         padding: const EdgeInsets.symmetric(horizontal: 24),
-//         child: Column(
-//           children: [
-//             // Animated bell icon container
-//             Container(
-//               width: 72,
-//               height: 72,
-//               decoration: BoxDecoration(
-//                 gradient: LinearGradient(
-//                   colors: [kBlue, const Color(0xFF1A73E8)],
-//                   begin: Alignment.topLeft,
-//                   end: Alignment.bottomRight,
-//                 ),
-//                 shape: BoxShape.circle,
-//                 boxShadow: [
-//                   BoxShadow(
-//                     color: kBlue.withOpacity(0.35),
-//                     blurRadius: 20,
-//                     offset: const Offset(0, 8),
-//                   ),
-//                 ],
-//               ),
-//               child: const Icon(
-//                 Icons.notifications_active_rounded,
-//                 color: Colors.white,
-//                 size: 34,
-//               ),
-//             ),
-//             const SizedBox(height: 18),
-//             const Text(
-//               'Notification Setting',
-//               style: TextStyle(
-//                   fontSize: 20,
-//                   fontWeight: FontWeight.w900,
-//                   color: kBlack),
-//             ),
-//             const SizedBox(height: 8),
-//             const Text(
-//               'Please confirm that you accept receiving\nnotifications in the following ways',
-//               textAlign: TextAlign.center,
-//               style: TextStyle(
-//                   fontSize: 13,
-//                   color: kGrey,
-//                   height: 1.5),
-//             ),
-//           ],
-//         ),
-//       );
-
-//   // ════════════════════════════════════════
-//   //  CHANNEL GRID — 3 columns, selectable cards
-//   // ════════════════════════════════════════
-//   Widget _channelGrid() => Padding(
-//         padding: const EdgeInsets.symmetric(horizontal: 20),
-//         child: GridView.builder(
-//           shrinkWrap: true,
-//           physics: const NeverScrollableScrollPhysics(),
-//           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//             crossAxisCount: 3,
-//             crossAxisSpacing: 14,
-//             mainAxisSpacing: 14,
-//             childAspectRatio: 1.0,
-//           ),
-//           itemCount: _channels.length,
-//           itemBuilder: (_, i) {
-//             final ch = _channels[i];
-//             final isSelected = _selected.contains(ch['name']);
-//             return GestureDetector(
-//               onTap: () {
-//                 setState(() {
-//                   if (isSelected) {
-//                     _selected.remove(ch['name']);
-//                   } else {
-//                     _selected.add(ch['name'] as String);
-//                   }
-//                 });
-//               },
-//               child: AnimatedContainer(
-//                 duration: const Duration(milliseconds: 200),
-//                 decoration: BoxDecoration(
-//                   color: isSelected
-//                       ? (ch['color'] as Color).withOpacity(0.08)
-//                       : Colors.white,
-//                   borderRadius: BorderRadius.circular(16),
-//                   border: Border.all(
-//                     color: isSelected
-//                         ? (ch['color'] as Color)
-//                         : kBorderGrey,
-//                     width: isSelected ? 2 : 1,
-//                   ),
-//                   boxShadow: isSelected
-//                       ? [
-//                           BoxShadow(
-//                             color: (ch['color'] as Color).withOpacity(0.15),
-//                             blurRadius: 10,
-//                             offset: const Offset(0, 4),
-//                           )
-//                         ]
-//                       : [
-//                           BoxShadow(
-//                             color: Colors.black.withOpacity(0.05),
-//                             blurRadius: 6,
-//                             offset: const Offset(0, 2),
-//                           )
-//                         ],
-//                 ),
-//                 child: Column(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   children: [
-//                     // Icon with color
-//                     Container(
-//                       width: 42,
-//                       height: 42,
-//                       decoration: BoxDecoration(
-//                         color: (ch['color'] as Color).withOpacity(0.12),
-//                         shape: BoxShape.circle,
-//                       ),
-//                       child: Icon(
-//                         ch['icon'] as IconData,
-//                         color: ch['color'] as Color,
-//                         size: 22,
-//                       ),
-//                     ),
-//                     const SizedBox(height: 8),
-//                     Text(
-//                       ch['name'] as String,
-//                       style: TextStyle(
-//                         fontSize: 12,
-//                         fontWeight: FontWeight.w600,
-//                         color: isSelected
-//                             ? (ch['color'] as Color)
-//                             : kBlack,
-//                       ),
-//                     ),
-//                     // Selected checkmark
-//                     if (isSelected) ...[
-//                       const SizedBox(height: 4),
-//                       Icon(
-//                         Icons.check_circle_rounded,
-//                         color: ch['color'] as Color,
-//                         size: 14,
-//                       ),
-//                     ],
-//                   ],
-//                 ),
-//               ),
-//             );
-//           },
-//         ),
-//       );
-
-//   // ════════════════════════════════════════
-//   //  CONTINUE BUTTON
-//   // ════════════════════════════════════════
-//   Widget _continueButton(BuildContext context) => Padding(
-//         padding: const EdgeInsets.symmetric(horizontal: 24),
-//         child: GestureDetector(
-//           onTap: () {
-//             if (_selected.isEmpty) {
-//               ScaffoldMessenger.of(context).showSnackBar(
-//                 const SnackBar(
-//                   content: Text('Please select at least one channel'),
-//                   backgroundColor: kBlue,
-//                 ),
-//               );
-//               return;
-//             }
-//             ScaffoldMessenger.of(context).showSnackBar(
-//               SnackBar(
-//                 content: Text(
-//                     'Notifications enabled for: ${_selected.join(', ')}'),
-//                 backgroundColor: kBlue,
-//               ),
-//             );
-//             Navigator.pop(context);
-//           },
-//           child: Container(
-//             height: 50,
-//             width: double.infinity,
-//             decoration: BoxDecoration(
-//               color: kBlue,
-//               borderRadius: BorderRadius.circular(14),
-//               boxShadow: [
-//                 BoxShadow(
-//                   color: kBlue.withOpacity(0.35),
-//                   blurRadius: 12,
-//                   offset: const Offset(0, 5),
-//                 ),
-//               ],
-//             ),
-//             child: const Center(
-//               child: Text(
-//                 'Continue',
-//                 style: TextStyle(
-//                     color: Colors.white,
-//                     fontSize: 15,
-//                     fontWeight: FontWeight.w700),
-//               ),
-//             ),
-//           ),
-//         ),
-//       );
-
-//   // ════════════════════════════════════════
-//   //  CANCEL BUTTON
-//   // ════════════════════════════════════════
-//   Widget _cancelButton(BuildContext context) => GestureDetector(
-//         onTap: () => Navigator.pop(context),
-//         child: const Text(
-//           'Cancel',
-//           style: TextStyle(
-//               fontSize: 14,
-//               color: kGrey,
-//               fontWeight: FontWeight.w500),
-//         ),
-//       );
-// }
-
-
-
-
-
-
-
-
 
 
 // lib/screens/notification_setting_screen.dart
@@ -430,7 +113,7 @@ class _NotificationSettingScreenState
   Widget _appBar(BuildContext context) => Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [kBlue, Color(0xFF1A73E8)],
+            colors: [AppColors.kBlue, Color(0xFF1A73E8)],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
@@ -462,7 +145,7 @@ class _NotificationSettingScreenState
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: const Text('Please select at least one channel'),
-                      backgroundColor: kBlue,
+                      backgroundColor: AppColors.kBlue,
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
@@ -520,14 +203,14 @@ class _NotificationSettingScreenState
           padding: const EdgeInsets.all(22),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              colors: [kBlue, Color(0xFF1A73E8)],
+              colors: [AppColors.kBlue, Color(0xFF1A73E8)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(22),
             boxShadow: [
               BoxShadow(
-                color: kBlue.withOpacity(0.35),
+                color: AppColors.kBlue.withOpacity(0.35),
                 blurRadius: 20,
                 offset: const Offset(0, 8),
               ),
@@ -618,7 +301,7 @@ class _NotificationSettingScreenState
           style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w800,
-              color: kBlack,
+              color: AppColors.kBlack,
               letterSpacing: 0.2),
         ),
       );
@@ -697,7 +380,7 @@ class _NotificationSettingScreenState
                         fontWeight: FontWeight.w700,
                         color: isSel
                             ? (ch['color'] as Color)
-                            : kBlack,
+                            : AppColors.kBlack,
                       ),
                     ),
                     const SizedBox(height: 3),
@@ -742,8 +425,8 @@ class _NotificationSettingScreenState
             children: [
               _toggleRow(
                 icon: Icons.notifications_rounded,
-                iconColor: kBlue,
-                iconBg: kBlueLite,
+                iconColor: AppColors.kBlue,
+                iconBg: AppColors.kBlueLite,
                 label: 'Push Notifications',
                 subtitle: 'Receive alerts on your device',
                 value: _pushEnabled,
@@ -852,18 +535,18 @@ class _NotificationSettingScreenState
                       style: const TextStyle(
                           fontSize: 13.5,
                           fontWeight: FontWeight.w700,
-                          color: kBlack)),
+                          color: AppColors.kBlack)),
                   const SizedBox(height: 2),
                   Text(subtitle,
                       style: const TextStyle(
-                          fontSize: 11.5, color: kGrey)),
+                          fontSize: 11.5, color: AppColors.kGrey)),
                 ],
               ),
             ),
             CupertinoSwitch(
               value: value,
               onChanged: onChanged,
-              activeTrackColor: kBlue,
+              activeTrackColor: AppColors.kBlue,
             ),
           ],
         ),
@@ -871,7 +554,7 @@ class _NotificationSettingScreenState
 
   Widget _tileDivider() => const Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Divider(color: kBorderGrey, thickness: 1, height: 1),
+        child: Divider(color: AppColors.kBorderGrey, thickness: 1, height: 1),
       );
 
   // ════════════════════════════════════════
@@ -885,7 +568,7 @@ class _NotificationSettingScreenState
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: const Text('Please select at least one channel'),
-                  backgroundColor: kBlue,
+                  backgroundColor: AppColors.kBlue,
                   behavior: SnackBarBehavior.floating,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)),
@@ -910,14 +593,14 @@ class _NotificationSettingScreenState
             width: double.infinity,
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [kBlue, Color(0xFF1A73E8)],
+                colors: [AppColors.kBlue, Color(0xFF1A73E8)],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
-                  color: kBlue.withOpacity(0.4),
+                  color: AppColors.kBlue.withOpacity(0.4),
                   blurRadius: 14,
                   offset: const Offset(0, 6),
                 ),
@@ -952,7 +635,7 @@ class _NotificationSettingScreenState
             'Cancel',
             style: TextStyle(
                 fontSize: 14,
-                color: kGrey,
+                color: AppColors.kGrey,
                 fontWeight: FontWeight.w500),
           ),
         ),

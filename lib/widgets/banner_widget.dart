@@ -40,17 +40,17 @@ class HeroBanner extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text('50% OFF',
-                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500, color: kGrey)),
+                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500, color: AppColors.kGrey)),
                 const SizedBox(height: 2),
                 const Text('Medical\nProduct',
-                    style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900, color: kBlack, height: 1.1)),
+                    style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900, color: AppColors.kBlack, height: 1.1)),
                 const SizedBox(height: 9),
                 GestureDetector(
                   onTap: () {},
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                     decoration: BoxDecoration(
-                      color: kBlack,
+                      color: AppColors.kBlack,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: const Text('Open',
@@ -97,7 +97,7 @@ class HeroBanner extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: Image.network(url, fit: BoxFit.contain,
-              errorBuilder: (_, _, _) => const Icon(Icons.medical_services, color: kBlue, size: 18)),
+              errorBuilder: (_, _, _) => const Icon(Icons.medical_services, color: AppColors.kBlue, size: 18)),
         ),
       );
 }

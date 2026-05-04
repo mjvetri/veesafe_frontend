@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
-import '../models/product_model.dart';
+import '../models/product_models.dart';
 
 class ProductListCard extends StatelessWidget {
   final List<ProductModel> products;

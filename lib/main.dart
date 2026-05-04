@@ -9,7 +9,7 @@ import 'screens/auth/otp_verification_screen.dart';
 import 'screens/auth/forgot_password_screen.dart';
 import 'screens/auth/reset_password_screen.dart';
 import 'package:flutter/services.dart';
-
+import 'screens/healthcare/healthcare_screen.dart';
 
 // void main() => runApp(const VeeSafeApp());
 
@@ -18,7 +18,6 @@ import 'package:flutter/services.dart';
 //   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 //   runApp(const VeeSafeApp());
 // }
-
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,10 +40,10 @@ class VeeSafeApp extends StatelessWidget {
     return MaterialApp(
       title: 'VeeSafe',
       debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.light,
+      themeMode: ThemeMode.light,
       theme: ThemeData(
         // scaffoldBackgroundColor: Colors.white,
-         scaffoldBackgroundColor: const Color(0xFFF5F7FA),
+        scaffoldBackgroundColor: const Color(0xFFF5F7FA),
         fontFamily: 'Roboto',
         useMaterial3: false,
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1A3A6B)),
@@ -61,6 +60,7 @@ class VeeSafeApp extends StatelessWidget {
         '/forgot_password': (context) => const ForgotPasswordScreen(),
         '/reset_password': (context) => const ResetPasswordScreen(),
         '/home': (context) => const HomeScreen(),
+        '/healthcare': (context) => const HomeHealthcareScreen(),
       },
     );
   }

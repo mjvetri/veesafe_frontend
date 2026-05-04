@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../constants/app_colors.dart';
 import '../../../constants/app_strings.dart';
-import '../../../models/product_model.dart';
+import '../../../models/product_models.dart';
 import '../../../widgets/common_widgets.dart';
 import '../../../widgets/action_row.dart';
 import '../../../widgets/product_list_card.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
 import '../../constants/app_strings.dart';
-import '../../models/order_model.dart';
+import '../../models/order_models.dart';
 import '../../widgets/common_widgets.dart';
 import '../../widgets/order_card.dart';
 

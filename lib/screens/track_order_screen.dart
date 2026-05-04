@@ -95,10 +95,26 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
       'date':    'Sun , 5 Jan',
       'status':  'Pending',
     },
+
+    //new
+    {
+      'name':   'Nebulizer Machine',
+      'id':     'RENT23456789',
+      'from':   'Veesafe Store',
+      'to':     'Your Home',
+      'date':   'Returns: 15 Feb',
+      'status': 'Rental',
+    },
   ];
 
+  // List<Map<String, String>> get _filteredOrders {
+  //   final tabs = ['Delivering', 'Received', 'Pending'];
+
+
   List<Map<String, String>> get _filteredOrders {
-    final tabs = ['Delivering', 'Received', 'Pending'];
+  final tabs = ['Delivering', 'Received', 'Pending', 'Rental'];
+
+
     return _orders
         .where((o) => o['status'] == tabs[_selectedTab])
         .toList();
@@ -272,8 +288,12 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
 
   // ── 3 Tab buttons
   Widget _buildTabs(double sw) {
-    final tabs = ['Delivering', 'Received', 'Pending'];
-    final activeColors = [_kNavy, _kNavy, _kRed];
+    // final tabs = ['Delivering', 'Received', 'Pending'];
+    // final activeColors = [_kNavy, _kNavy, _kRed];
+
+   final tabs = ['Delivering', 'Received', 'Pending', 'Rental'];
+   final activeColors = [_kNavy, _kNavy, _kRed, const Color(0xFF00B4D8)];
+
 
     return Row(
       children: List.generate(tabs.length, (i) {
@@ -407,15 +427,30 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                   ),
                 ),
                 // Status OR From→To
+                // if (!isDelivering) ...[
+                //   Text(
+                //     status == 'Received' ? 'Completed' : 'Pending',
+                //     style: TextStyle(
+                //       fontSize: sw * 0.032,
+                //       fontWeight: FontWeight.w700,
+                //       color: statusColor,
+                //     ),
+                //   ),
+
+                //new
                 if (!isDelivering) ...[
-                  Text(
-                    status == 'Received' ? 'Completed' : 'Pending',
-                    style: TextStyle(
-                      fontSize: sw * 0.032,
-                      fontWeight: FontWeight.w700,
-                      color: statusColor,
-                    ),
-                  ),
+  Text(
+    status == 'Received' ? 'Completed'
+        : status == 'Rental' ? 'Active Rental'
+        : 'Pending',
+    style: TextStyle(
+      fontSize: sw * 0.032,
+      fontWeight: FontWeight.w700,
+      color: statusColor,
+    ),
+  ),
+
+
                 ] else ...[
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -476,10 +511,50 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
               ),
             ),
           ],
+
+
+          //new
+
+
+// Rental detail card
+if (order['status'] == 'Rental') ...[
+  Container(
+    margin: EdgeInsets.fromLTRB(sw * 0.04, 0, sw * 0.04, sw * 0.03),
+    padding: EdgeInsets.all(sw * 0.03),
+    decoration: BoxDecoration(
+      color: const Color(0xFFF0FBF8),
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(color: const Color(0xFF00B4D8).withOpacity(0.3)),
+    ),
+    child: Column(children: [
+      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text('Rental Period', style: TextStyle(fontSize: sw * 0.028, color: _kGrey)),
+        Text('Feb 1 – Feb 15', style: TextStyle(fontSize: sw * 0.028, fontWeight: FontWeight.w700, color: const Color(0xFF1A2340))),
+      ]),
+      SizedBox(height: sw * 0.01),
+      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text('Return Status', style: TextStyle(fontSize: sw * 0.028, color: _kGrey)),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+          decoration: BoxDecoration(color: const Color(0xFF00B4D8), borderRadius: BorderRadius.circular(6)),
+          child: Text('Pickup Scheduled', style: TextStyle(color: Colors.white, fontSize: sw * 0.024, fontWeight: FontWeight.w700)),
+        ),
+      ]),
+      SizedBox(height: sw * 0.01),
+      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text('Deposit Refund', style: TextStyle(fontSize: sw * 0.028, color: _kGrey)),
+        Text('After return verified', style: TextStyle(fontSize: sw * 0.028, color: const Color(0xFF2E7D32), fontWeight: FontWeight.w600)),
+      ]),
+    ]),
+  ),
+],
+
+
         ],
       ),
     );
   }
+
 
   Widget _fromToLabel(String label, String value, double sw) {
     return Column(

@@ -93,8 +93,30 @@ class CheckoutStepBar extends StatelessWidget {
 // ════════════════════════════════════════════════════════
 // CHECKOUT PAGE 1/3 — PAYMENT
 // ════════════════════════════════════════════════════════
+// class CheckoutPaymentScreen extends StatefulWidget {
+//   const CheckoutPaymentScreen({super.key});
+
+
+
 class CheckoutPaymentScreen extends StatefulWidget {
-  const CheckoutPaymentScreen({super.key});
+  final bool isRental;
+  final String rentalDuration;
+  final int rentalCount;
+  final double rentalPrice;
+  final double securityDeposit;
+  final String productTitle;
+  final String productPrice;
+
+  const CheckoutPaymentScreen({
+    super.key,
+    this.isRental = false,
+    this.rentalDuration = 'Daily',
+    this.rentalCount = 1,
+    this.rentalPrice = 0,
+    this.securityDeposit = 0,
+    this.productTitle = '',
+    this.productPrice = '',
+  });
   @override
   State<CheckoutPaymentScreen> createState() => _CheckoutPaymentScreenState();
 }
@@ -133,6 +155,10 @@ class _CheckoutPaymentScreenState extends State<CheckoutPaymentScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: sw * 0.04),
+                  if (widget.isRental) ...[
+  _rentalSummaryBanner(sw),
+  SizedBox(height: sw * 0.02),
+],                  
                   _quickPay(sw),
                   SizedBox(height: sw * 0.04),
                   _otherModes(sw),
@@ -146,7 +172,57 @@ class _CheckoutPaymentScreenState extends State<CheckoutPaymentScreen> {
         ],
       ),
     );
-  }
+ }
+
+
+//new banner
+
+Widget _rentalSummaryBanner(double sw) {
+  return Padding(
+    padding: EdgeInsets.symmetric(horizontal: sw * 0.04),
+    child: Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(sw * 0.04),
+      decoration: BoxDecoration(
+        color: const Color(0xFF00B4D8).withOpacity(0.08),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: const Color(0xFF00B4D8).withOpacity(0.4)),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(children: [
+          const Icon(Icons.calendar_month_rounded, color: Color(0xFF00B4D8), size: 20),
+          const SizedBox(width: 8),
+          Text('Rental Order Summary',
+              style: TextStyle(fontSize: sw * 0.034, fontWeight: FontWeight.w700, color: _kNavy)),
+        ]),
+        SizedBox(height: sw * 0.02),
+        _rentalRow('Product',       widget.productTitle,  sw),
+        _rentalRow('Rental Type',   widget.rentalDuration, sw),
+        _rentalRow('Duration',      '${widget.rentalCount}x ${widget.rentalDuration}', sw),
+        _rentalRow('Rental Price',  '\$${widget.rentalPrice.toStringAsFixed(2)}', sw),
+        _rentalRow('Security Deposit', '\$${widget.securityDeposit.toStringAsFixed(0)} (refundable)', sw),
+        const Divider(height: 16, color: Color(0xFFE0E0E0)),
+        _rentalRow('Total to Pay',
+            '\$${(widget.rentalPrice + widget.securityDeposit).toStringAsFixed(2)}', sw,
+            bold: true),
+      ]),
+    ),
+  );
+}
+
+Widget _rentalRow(String label, String value, double sw, {bool bold = false}) {
+  return Padding(
+    padding: EdgeInsets.only(bottom: sw * 0.012),
+    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      Text(label, style: TextStyle(fontSize: sw * 0.029, color: _kGrey)),
+      Text(value, style: TextStyle(
+          fontSize: sw * 0.029,
+          fontWeight: bold ? FontWeight.w800 : FontWeight.w600,
+          color: bold ? _kNavy : _kDark)),
+    ]),
+  );
+}
+
 
   // ── Header
   Widget _header(BuildContext context, String title, double sw) {
